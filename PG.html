@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S.MONT | Marketing y Diseño</title>
+    <!-- Google Fonts para tipografía futurista y elegante -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* --- RESET Y VARIABLES --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        :root {
+            --bg-dark: #030712;
+            --blue-deep: #0b1528;
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --glass-shine: rgba(255, 255, 255, 0.2);
+            --pastel-blue: #a5f3fc;
+            --pastel-pink: #fbcfe8;
+            --pastel-purple: #c084fc;
+            --text-primary: #f3f4f6;
+            --text-secondary: #9ca3af;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            position: relative;
+            min-height: 100vh;
+        }
+
+        /* --- EFECTOS DE FONDO LIQUID GLASS Y CAUSTICS --- */
+        .ambient-glow {
+            position: fixed;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(165, 243, 252, 0.15) 0%, rgba(192, 132, 252, 0.05) 50%, transparent 100%);
+            filter: blur(80px);
+            z-index: -1;
+            pointer-events: none;
+            animation: floatGlow 12s infinite alternate ease-in-out;
+        }
+
+        .glow-1 { top: -10%; left: -10%; }
+        .glow-2 { bottom: -10%; right: -10%; background: radial-gradient(circle, rgba(251, 207, 232, 0.12) 0%, rgba(11, 21, 40, 0.8) 70%, transparent 100%); }
+
+        @keyframes floatGlow {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(50px, 30px) scale(1.15); }
+        }
+
+        /* --- HEADER --- */
+        header {
+            width: 100%;
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            z-index: 100;
+            background: rgba(3, 7, 18, 0.4);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 1.5rem;
+            letter-spacing: 2px;
+            background: linear-gradient(135deg, var(--pastel-blue), var(--pastel-pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        nav a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            margin-left: 2rem;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--pastel-blue);
+        }
+
+        /* --- HERO SECTION CON TONO EMOTIVO --- */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 8rem 2rem 4rem 2rem;
+            position: relative;
+        }
+
+        .badge {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            padding: 0.5rem 1.5rem;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            color: var(--pastel-blue);
+            backdrop-filter: blur(10px);
+            box-shadow: inset 0 1px 2px var(--glass-shine);
+            margin-bottom: 2rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            line-height: 1.1;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            max-width: 900px;
+        }
+
+        h1 span {
+            background: linear-gradient(120deg, var(--pastel-blue), #ffffff, var(--pastel-pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.15rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            line-height: 1.6;
+            margin-bottom: 3rem;
+        }
+
+        /* --- THE DASHBOARD (iOS 26 Liquid Glass Widget) --- */
+        .dashboard-container {
+            width: 90%;
+            max-width: 1200px;
+            background: rgba(11, 21, 40, 0.45);
+            border: 1px solid var(--glass-border);
+            border-radius: 32px;
+            padding: 2.5rem;
+            position: relative;
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+            box-shadow: 
+                0 30px 60px rgba(0, 0, 0, 0.4),
+                inset 0 1px 1px rgba(255, 255, 255, 0.15),
+                inset 0 -10px 20px rgba(255, 255, 255, 0.02);
+            overflow: hidden;
+        }
+
+        /* Efecto de Caustic Light dentro del Dashboard */
+        .dashboard-container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(ellipse at center, rgba(165, 243, 252, 0.08) 0%, transparent 60%);
+            transform: rotate(-15deg);
+            pointer-events: none;
+        }
+
+        .dash-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            padding-bottom: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .dash-status {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.85rem;
+            color: var(--pastel-pink);
+        }
+
+        .pulse-dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--pastel-pink);
+            border-radius: 50%;
+            box-shadow: 0 0 12px var(--pastel-pink);
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(0.9); opacity: 0.6; }
+            50% { transform: scale(1.1); opacity: 1; }
+            100% { transform: scale(0.9); opacity: 0.6; }
+        }
+
+        .dash-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        /* Widgets individuales */
+        .widget {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 1.5rem;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.05);
+        }
+
+        .widget:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.04);
+            border-color: rgba(165, 243, 252, 0.3);
+        }
+
+        .widget-title {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+
+        /* Simulador interactivo de logo de marca */
+        .logo-builder-box {
+            height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            background: radial-gradient(circle at center, rgba(11, 21, 40, 0.9) 0%, rgba(3, 7, 18, 1) 100%);
+            border: 1px dashed rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Refracción de cristal líquido sobre el logo */
+        .glass-overlay {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(135deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0) 50%, rgba(0,0,0,0.2) 100%);
+            border-radius: 12px;
+            pointer-events: none;
+            box-shadow: inset 0 1px 2px rgba(255,255,255,0.2);
+        }
+
+        .logo-preview {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            transition: all 0.5s;
+            z-index: 1;
+        }
+
+        .logo-inputs {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        input[type="text"] {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 0.6rem 1rem;
+            border-radius: 10px;
+            color: var(--text-primary);
+            font-size: 0.9rem;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        input[type="text"]:focus {
+            border-color: var(--pastel-blue);
+        }
+
+        .btn {
+            background: linear-gradient(135deg, var(--pastel-blue), var(--pastel-purple));
+            color: var(--bg-dark);
+            border: none;
+            padding: 0.6rem 1.2rem;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, opacity 0.2s;
+        }
+
+        .btn:hover {
+            transform: scale(1.02);
+            opacity: 0.95;
+        }
+
+        /* Simulador de campaña publicitaria */
+        .campaign-stat {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--pastel-blue);
+            font-family: 'Space Grotesk', sans-serif;
+            margin-top: 0.5rem;
+        }
+
+        .campaign-progress-bar {
+            width: 100%;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            margin: 1rem 0;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--pastel-blue), var(--pastel-pink));
+            width: 75%;
+            border-radius: 10px;
+            box-shadow: 0 0 10px var(--pastel-blue);
+        }
+
+        /* --- DETALLE EMOCIONAL --- */
+        .emotional-footer {
+            margin-top: 5rem;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding-top: 3rem;
+            width: 100%;
+        }
+
+        .emotional-quote {
+            font-style: italic;
+            font-size: 1.2rem;
+            color: var(--pastel-pink);
+            max-width: 700px;
+            margin: 0 auto 1rem auto;
+        }
+
+        .emotional-footer p {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        @media (max-width: 768px) {
+            header nav { display: none; }
+            .dashboard-container { padding: 1.5rem; }
+            .dash-grid { gap: 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Capas de resplandor ambiental de fondo -->
+    <div class="ambient-glow glow-1"></div>
+    <div class="ambient-glow glow-2"></div>
+
+    <!-- Cabecera -->
+    <header>
+        <div class="logo">S.MONT</div>
+        <nav>
+            <a href="#proposito">Nuestro Propósito</a>
+            <a href="#dashboard">Tu Primer Escenario</a>
+            <a href="#contacto">Escríbenos</a>
+        </nav>
+    </header>
+
+    <!-- Héroe Emotivo -->
+    <section class="hero">
+        <div class="badge">Creemos en tus inicios</div>
+        <h1>Es hora de que el mundo conozca <span>tu gran esfuerzo</span></h1>
+        <p>
+            Iniciar un negocio propio es un salto de fe. Diseñamos identidades visuales, logotipos y campañas publicitarias para que tu sueño local compita con la fuerza de los más grandes.
+        </p>
+
+        <!-- Dashboard Interactivo Estilo iOS 26 Liquid Glass -->
+        <div class="dashboard-container" id="dashboard">
+            <div class="dash-header">
+                <div class="logo" style="font-size: 1.2rem;">S.MONT / CONTROL PANEL</div>
+                <div class="dash-status">
+                    <span class="pulse-dot"></span>
+                    PROYECTANDO NUEVOS SUEÑOS
+                </div>
+            </div>
+
+            <div class="dash-grid">
+                <!-- Widget 1: Generador Visual de Logos para Emprendedores -->
+                <div class="widget">
+                    <div class="widget-title">Diseño de Logotipo Dinámico</div>
+                    <div class="logo-builder-box">
+                        <div class="glass-overlay"></div>
+                        <div class="logo-preview" id="logoText" style="color: var(--pastel-blue);">Tu Marca</div>
+                    </div>
+                    <div class="logo-inputs">
+                        <input type="text" id="brandInput" placeholder="Nombre de tu local..." maxlength="15">
+                        <button class="btn" onclick="updateLogo()">Visualizar</button>
+                    </div>
+                    <p style="font-size: 0.75rem; color: var(--text-secondary); margin-top: 0.8rem; text-align: left;">
+                        Haz la prueba. Escribe tu nombre y observa cómo cobra vida bajo nuestro estilo reflectivo.
+                    </p>
+                </div>
+
+                <!-- Widget 2: Métricas de Campaña Publicitaria de Ejemplo -->
+                <div class="widget">
+                    <div class="widget-title">Alcance Estimado de Tu Campaña</div>
+                    <div class="campaign-stat" id="campaignStat">+12,400</div>
+                    <p style="font-size: 0.85rem; color: var(--text-secondary);">Clientes locales que verán tu nuevo banner publicitario.</p>
+                    <div class="campaign-progress-bar">
+                        <div class="progress-fill"></div>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; font-size: 0.75rem;">
+                        <span style="color: var(--pastel-pink);">Presupuesto adaptable</span>
+                        <span style="color: var(--pastel-blue);">Meta local</span>
+                    </div>
+                </div>
+
+                <!-- Widget 3: El Alma del Local -->
+                <div class="widget" style="display: flex; flex-direction: column; justify-content: space-between;">
+                    <div>
+                        <div class="widget-title">Nuestra Filosofía</div>
+                        <p style="font-size: 0.9rem; line-height: 1.5; color: var(--text-primary); text-align: left;">
+                            "No necesitas un presupuesto de millones para tener un diseño increíble. Solo necesitas a alguien que entienda el valor de tu esfuerzo diario."
+                        </p>
+                    </div>
+                    <div style="border-top: 1px solid rgba(255,255,255,0.05); padding-top: 0.8rem; margin-top: 1rem; display: flex; gap: 0.5rem; align-items: center;">
+                        <span style="font-size: 0.75rem; color: var(--pastel-purple);">★ Trato humano y cercano</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer Emotivo del Dashboard -->
+            <div class="emotional-footer">
+                <div class="emotional-quote">"Todo gran imperio comenzó como un pequeño local en la esquina de una calle."</div>
+                <p>S.MONT, MARKETING Y DISEÑO © 2026 — Diseñando los íconos del mañana.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- JavaScript para Interactividad del Simulador -->
+    <script>
+        function updateLogo() {
+            const input = document.getElementById('brandInput').value;
+            const preview = document.getElementById('logoText');
+            const colors = ['var(--pastel-blue)', 'var(--pastel-pink)', 'var(--pastel-purple)', '#ffffff'];
+            
+            if(input.trim() !== "") {
+                preview.textContent = input;
+                // Elegir color pastel aleatorio del set para el efecto de refracción
+                const randomColor = colors[Math.floor(Math.random() * colors.length)];
+                preview.style.color = randomColor;
+                preview.style.textShadow = `0 0 15px ${randomColor}`;
+            } else {
+                preview.textContent = "Tu Marca";
+                preview.style.color = 'var(--pastel-blue)';
+                preview.style.textShadow = 'none';
+            }
+        }
+    </script>
+</body>
+</html>
